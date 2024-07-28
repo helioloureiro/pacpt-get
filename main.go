@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/Jguer/go-alpm/v2"
+	"github.com/helioloureiro/golorama"
 )
 
 const (
@@ -123,12 +126,20 @@ func usage(exitCode int) {
 }
 
 func SearchPackages() {
-	arguments := GetArgsArray("-Ss")
-	output, err := ShellExec(PACMAN, arguments...)
-	if err != nil {
-		log.Fatal(err)
+	h, er := alpm.Initialize("/", "/var/lib/pacman")
+	if er != nil {
+		fmt.Println(er)
+		return
 	}
-	fmt.Println(output)
+	defer h.Release()
+	db, _ := h.RegisterSyncDB("core", 0)
+	h.RegisterSyncDB("community", 0)
+	h.RegisterSyncDB("extra", 0)
+
+	for _, pkg := range db.PkgCache().Slice() {
+		fmt.Printf("%s==%s: %s\n",
+			golorama.GetCSI(golorama.GREEN)+pkg.Name(), golorama.GetCSI(golorama.BLUE)+pkg.Version(), golorama.GetCSI(golorama.RESET)+pkg.Description())
+	}
 }
 
 func GetArgsArray(option string) []string {

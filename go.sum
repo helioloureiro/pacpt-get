@@ -1,0 +1,4 @@
+github.com/Jguer/go-alpm/v2 v2.2.2 h1:sPwUoZp1X5Tw6K6Ba1lWvVJfcgVNEGVcxARLBttZnC0=
+github.com/Jguer/go-alpm/v2 v2.2.2/go.mod h1:lfe8gSe83F/KERaQvEfrSqQ4n+8bES+ZIyKWR/gm3MI=
+github.com/helioloureiro/golorama v0.1.3 h1:4f/LneMPJIIlA0Ic542smAt4yxa4FAbUUCvfrfbuyQ8=
+github.com/helioloureiro/golorama v0.1.3/go.mod h1:Otd4GK5UKisMIMCYUXz1xbWBXwo5aUKrCYaDGOiQoqw=
